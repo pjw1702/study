@@ -1,0 +1,6 @@
+version: '3.0'
+services:
+  web:
+    extends:
+      file: extend_docker_compose.yml
+      service: extend_web

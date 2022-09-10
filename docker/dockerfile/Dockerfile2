@@ -1,0 +1,4 @@
+FROM ubuntu:14.04
+MAINTAINER pjw
+LABEL "purpose"="practice"
+RUN apt-get update
