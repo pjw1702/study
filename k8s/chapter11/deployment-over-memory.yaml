@@ -1,0 +1,10 @@
+# 디플로이먼트로 생성을 시도한다면 디플로이먼트는 정상적으로 생성되지만 파드가 생성되지 않는다
+
+#...
+#        resources:
+#          limits:
+#            memory: "3000Mi"
+#            cpu: "1000m"
+#          requests:
+#            memory: "128Mi"
+#            cpu: "500m"

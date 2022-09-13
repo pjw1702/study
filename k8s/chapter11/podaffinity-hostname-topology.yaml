@@ -1,0 +1,9 @@
+# 토폴로지 키를 호스트 이름으로 지정하는 경우도 생각할 수 있다
+# ...
+#     - matchExpressions:
+#       - key: mylabel/database
+#         operator: In
+#         values:
+#         - mysql
+#     topologyKey: kubernetes.io/hostname
+# ...

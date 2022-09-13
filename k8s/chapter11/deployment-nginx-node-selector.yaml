@@ -1,0 +1,14 @@
+# ...
+#  replicas: 3
+#  selector: 
+#    matchLabels:
+#      app: deployment-nginx
+#  template:
+#    metadata:
+#      name: deployment-nginx
+#      labels:
+#        app: deployment-nginx
+#    spec:
+#      nodeSelector:
+#        mylabel/disk: hdd
+# ...

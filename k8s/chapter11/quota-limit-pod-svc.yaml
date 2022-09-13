@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota-example
+  namespace: default
+spec:
+  hard:
+    requests.cpu: "1000m"
+    requests.memory: "500Mi"
+    limits.cpu: "1500m"
+    limits.memory: "1000Mi"
+    count/pods: 3
+    count/services: 5
+
+  # 코어 API 그룹("")에 속하는 오브젝트는 count/<오브젝트 이름>이지만, 오브젝트의 세부 항목이나 코어 API 그룹이 아닌 별도의 API 그룹에 속하는 오브젝트는 count/<오브젝트 이름>.<항목> 또는 count/<오브젝트 이름>.<API 그룹 이름>이다
+
+  # ...
+  # spec:
+  #   hard:
+  #     count/pods: 3
+  #     counts/services: 5
+  #     count/configmap: 5
+  #     count/persistentvolumeclaims: 2
+  #     count/services.nodeports: 3
+  #     count/services.loadbalancers: 1
+  #     count/deployments.apps: 0
