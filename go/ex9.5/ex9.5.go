@@ -31,3 +31,20 @@ func main() {
 		fmt.Println("오늘은 내가 쏜다") // 음식값이 3만원 미만일 때
 	}
 }
+
+/*
+if 초기문; 조건문
+	ㄴ 초기문: initializer(initialize: 초기화)
+
+if 초기문; 조건문 {
+	문장
+}
+
+if filename, success := UploadFile(); success {
+	fmt.Println("Upload success", filename)
+} else {
+	fmt.Println("Failed to upload")
+}
+
+// 함수 호출에 성공하는 경우 작업을 수행해야 할 때 자주 쓰인다
+*/
