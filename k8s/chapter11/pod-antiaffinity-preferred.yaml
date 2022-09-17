@@ -1,0 +1,15 @@
+# ...
+# spec:
+#   affinity
+#     podAntiAffinity:
+#       preferredDuringSchedulingIgnoredDuringExecution:
+#       - podAntiAffinityTerm:
+#           labelSelector:
+#             matchExpressions:
+#             - key: mylabel/database
+#               operator: In
+#               values:
+#               - mysql
+#           topologyKey: failuer-domain.beta.kuberntetes.io/zone
+#         weight: 80
+# ...

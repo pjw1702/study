@@ -1,0 +1,19 @@
+# ...
+#   metadata:
+#     name: deployment-nginx
+#     labels:
+#       app: deployment-nginx
+#   spec:
+#     affinity:
+#       podAntiAffintiy:
+#         requiredDuringSchedulingIgnoredDuringExecution:
+#           - labelSelector:
+#               matchExpressions:
+#                 - key: app
+#                   operator: In
+#                   values:
+#                     - deployment-nginx
+#               topologyKey: "kubernetes.io/hostname"
+#     containers:
+#     - name: deployment-nginx
+#       image: nginx:latest
