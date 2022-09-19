@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-tolerlation-test
+spec:
+  tolerlations:
+  - key: pjw/my-taint
+    value: dirty
+    # pjw/my-taint 키의 값이 dirty 이며(Equal: value가 같은 경우)
+    operator: Equal
+    # Taint 효과가 NoSchedule인 경우 Taint를 용인한다
+    effect: Noschedule
+  containers:
+  - name: nginx
+    image: nginx:latest

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-master-tolerlation
+spec:
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
+      operator: Equal
+      value: ""
+  # "용인할 수 있다"가 아니라, "용인하도록 지정"한다
+  nodeSelector:
+    node-role.kubernetes.io/master: ""
+  containers:
+  - name: nginx
+    image: nginx:latest
