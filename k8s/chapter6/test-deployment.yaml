@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerapp
+  template:
+    metadata:
+      labels:
+        app: containerapp
+    spec:
+      hostNetwork: true
+      containers:
+      - name: centos1
+        image: centos
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        securityContext:
+            capabilities:
+                add: ["SYS_ADMIN"]
