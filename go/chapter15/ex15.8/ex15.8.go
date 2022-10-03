@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	str := "Hello ¿ùµå"
-	// ±æÀÌ°¡ °íÁ¤µÈ ¹è¿­Àº º¯È¯ÀÌ µÇÁö ¾Ê°í, µ¿Àû ¹è¿­ÀÎ ½½¶óÀÌ½º¸¦ »ç¿ëÇØ¾ß º¯È¯ÀÌ °¡´ÉÇÏ´Ù
-	arr := []rune(str) // ½½¶óÀÌ½º: µ¿Àû ¹è¿­, rune Å¸ÀÔ: int32ÀÇ º°ÄªÅ¸ÀÔ, rune Å¸ÀÔ ¹è¿­: ÇÑ ¸Þ¸ð¸® °ø°£´ç 4¹ÙÆ®¸¦ ÇÒ´ç
+	str := "Hello ì›”ë“œ"
+	// ê¸¸ì´ê°€ ê³ ì •ëœ ë°°ì—´ì€ ë³€í™˜ì´ ë˜ì§€ ì•Šê³ , ë™ì  ë°°ì—´ì¸ ìŠ¬ë¼ì´ìŠ¤ë¥¼ ì‚¬ìš©í•´ì•¼ ë³€í™˜ì´ ê°€ëŠ¥í•˜ë‹¤
+	arr := []rune(str) // ìŠ¬ë¼ì´ìŠ¤: ë™ì  ë°°ì—´, rune íƒ€ìž…: int32ì˜ ë³„ì¹­íƒ€ìž…, rune íƒ€ìž… ë°°ì—´: í•œ ë©”ëª¨ë¦¬ ê³µê°„ë‹¹ 4ë°”íŠ¸ë¥¼ í• ë‹¹
 
-	// len()¿¡ º¯¼ö°¡ ¾Æ´Ñ ¹è¿­À» ÀÎÀÚ°ªÀ¸·Î Àü´ÞÇÏ¸é, ¹è¿­ÀÇ ±æÀÌ¸¦ ¹ÝÈ¯ÇÑ´Ù
+	// len()ì— ë³€ìˆ˜ê°€ ì•„ë‹Œ ë°°ì—´ì„ ì¸ìžê°’ìœ¼ë¡œ ì „ë‹¬í•˜ë©´, ë°°ì—´ì˜ ê¸¸ì´ë¥¼ ë°˜í™˜í•œë‹¤
 	for i := 0; i < len(arr); i++ {
-		fmt.Printf("Å¸ÀÔ: %T °ª: %d ¹®ÀÚ °ª: %c\n", str[i], str[i], str[i])
+		fmt.Printf("íƒ€ìž…: %T ê°’: %d ë¬¸ìž ê°’: %c\n", str[i], str[i], str[i])
 	}
 }
