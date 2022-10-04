@@ -1,0 +1,14 @@
+# restartPolicy 속성이 기본적으로 Always로 설정되어 있는 관계로 Completed 상태가 된 이후에도 RESTARTS 항목의 횟수가 증가한다
+# kubectl get pod completed-pod-example -o yaml | grep restartPolicy를 통해 설정된 재시작 정책을 확인할 수 있다
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+spec:
+  containers:
+  - name: completed-pod-example
+    image: busybox
+    # 10초 동안 대기한 뒤 종료 코드로 0을 반환하고 종료한다
+    # 종료 코드를 반환한 뒤에는 Completed 상태로 전환한다
+    command: ["sh"]
+    args: ["-c", "sleep 10 && exit 0"]
