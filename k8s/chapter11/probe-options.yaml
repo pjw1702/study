@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-options-example
+  labels:
+    my-readinessprobe: test
+spec:
+  containers:
+  - name: probe-options-example
+    image: nginx
+    # readinessProbe 설정
+    readinessProbe:
+      httpGet:
+        port: 80
+        path: /
+      # livenessProbe와 readinessProbe의 세부 옵션 설정
+      periodSeconds: 5                  # 상태 검사를 진행할 주기를 설정한다 (기본값은 10초이다)
+      initialDelaySeconds: 10           # 파드가 생성된 뒤 상태검사를 시작할 때까지의 대기 시간을 설정한다 (기본적으로는 설정되어 있지 않다)
+      timeoutSeconds: 1                 # 요청에 대한 타임아웃 시간을 설정한다 (기본값은 1초이다)
+      successThreshold: 1               # 상태 검사에 성공했다고 간주할 검사 성공 횟수를 설정한다(기본값은 1이다)
+      failureThreshold: 3               # 상태 검사가 실패했다고 간주할 검사 실패 횟수를 설정한다 (기본값은 3이다)

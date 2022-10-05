@@ -1,0 +1,39 @@
+# Reference : https://github.com/kubernetes/kubernetes/issues/51671
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minreadyseconds-v1
+spec:
+  replicas: 1
+  # 애플리케이션에 readinessProbe를 적용하기 어렵거나, 초기화 시간이 어느정도 필요한 경우에는 디플로이먼트에서 minReadySeconds를 사용할 수 있다
+  # minReadySeconds는 디플로이먼트 업데이트시 컨테이너가 준비되기 위한 최소 대기 시간을 의미하며, 새로운 파드가 생성된 뒤 minReadySeconds의 시간이 지난 뒤에야 파드의 삭제 및 생성이 계속된다
+  minReadySeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: minready-test
+  template:
+    metadata:
+      labels:
+        app: minready-test
+    spec:
+      containers:
+      - name: minreadyseconds-v1
+        image: alicek106/rr-test:echo-hostname
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+  ports:
+  - name: web-port
+    port: 80
+    targetPort: 80
+  selector:
+    app: minready-test
+  type: NodePort

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: termination-grace-period-seconds
+spec:
+  # 유예 기간은 기본적으로 30초로 설정되어 있으며, 파드의 terminationGracePeriodSeconds라는 항목을 통해 설정할 수 있다
+  # 파드 내부의 애플리케이션이 SIGTERM을 수신했는데도 특정 유예 기간 이내에 종료되지 않으면 쿠버네티스는 SIGKILL 시그널을 전송해 강제로 프로세스를 종료하게 된다
+  terminationGracePeriodSeconds: 10
+  containers:
+  - name: termination-grace-period-seconds
+    image: nginx
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/usr/sbin/nginx","-s","quit"]
