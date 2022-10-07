@@ -1,0 +1,6 @@
+apiVersion: huevertech.com/v1alpha1
+kind: Pjw
+metadata:
+  name: my-custom-resource
+spec:
+  myvalue: "This is my value"
