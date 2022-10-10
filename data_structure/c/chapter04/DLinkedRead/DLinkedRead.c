@@ -1,3 +1,6 @@
+// LinkedRead.c에서 더미 노드를 추가 시킨 코드이다
+// LinkedRead.c와 마찬가지로, 아직 ADT와 삽입, 조회, 삭제의 기능이 별도로 구분하여 구현하지 않은 상태이다
+
 #include <stdio.h>
 #include <stdlib.h>
 
