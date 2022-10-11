@@ -1,0 +1,13 @@
+# 잡의 목적은 '특정 개수의 파드가 실행 중인 것'이 아닌 '파드가 실행되어 정상적으로 종료되는 것'이다
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-hello-world
+spec:
+  template:
+    spec:
+      restartPolicy: Never            # 파드가 최종적으로 도달해야 하는 상태가 Running이 아니라 Completed이므로 restartPolicy를 명시적으로 Never 또는 OnFailure로 지정해 주어야 한다
+      containers:
+      - name: job-hello-world
+        image: busybox
+        args: ["sh", "-c", "echo Hello, World && exit 0"]
