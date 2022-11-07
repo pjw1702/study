@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-parallelism
+spec:
+  parallelism: 3
+  template:
+    spec:
+      containers:
+      - name: job-parallelism
+        image: busybox
+        command: ["sh", "-c", "echo Hello, World && exit 0"]
+      restartPolicy: Never

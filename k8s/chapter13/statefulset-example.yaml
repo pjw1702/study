@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: statefulset-example
+spec:
+  selector:
+    matchLabels:
+      app: statefulset-example
+  # 일반적인 서비스는 라벨 셀렉터와 매칭되는 랜덤한 파드를 선택하여 트래픽을 분산하여 전달하므로 스테이트풀셋의 동작으로서 바람직하지 못하다
+  # 스테이트풀셋의 각 파드는 고유하게 식별되어야 하며, 파드에 접근할 때에도 '랜덤한 파드'가 아닌, '개별 파드'에 접근해야 한다
+  serviceName: statefulset-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: statefulset-example
+    spec:
+      containers:
+      - name: statefulset-example
+        image: alicek106/rr-test:echo-hostname
+        ports:
+        - containerPort: 80
+          name: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: statefulset-service
+spec:
+  # 스테이트풀셋의 spec.serviceName 항목의 정보와 매칭하여 연결한다
+  # 파드의 라벨을 매칭한다
+  selector:
+    app: statefulset-example
+  ports:
+  - port: 80
+    targetPort: web
+  # spec.clusterIP 항목이 None으로 설정되어 있는 것이 헤드리스 서비스라는 것을 의미한다
+  clusterIP: None

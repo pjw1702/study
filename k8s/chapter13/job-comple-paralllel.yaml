@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-comle-parallel
+spec:
+  completions: 8
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: job-comle-parallel
+        image: busybox
+        command: ["sh", "-c", "echo Hello, World && exit 0"]
+      restartPolicy: Never

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-example
+spec:
+  # 파드를 지정하기 위한 셀렉터 설정
+  # 데몬셋은 디플로이먼트와 같이 라벨 셀렉터를 통해 파드를 생성한다
+  selector:
+    matchLabels:
+      name: my-daemonset-example
+  template:
+    metadata:
+      # 파드 라벨 설정
+      labels:
+        name: my-daemonset-example
+    spec:
+      # 마스터 노드에도 파드를 생성
+      # 데몬셋 또한 다른 오브젝트처럼 파드를 기본 단위로 사용하므로 마스터 노드에 설정되어 있는 Taint를 인식한 상태로 파드가 할당된다
+      # 필수 사항은 아니다
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+        - name: daemonset-example
+          image: busybox
+          args: ["tail", "-f", "/dev/null"]
+          # 자원 할당량 제한: 데몬셋은 일반적으로 노드에 대한 에이전트 역할을 하므로 자원 부족 등으로 인해 데몬셋의 파드가 중지되는 것은 바람직하지 않다
+          # 따라서 데몬셋을 생성할 때는 Guaranteed 클래스로 설정하는 것이 좋다
+          # 필수 사항은 아니다
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+    

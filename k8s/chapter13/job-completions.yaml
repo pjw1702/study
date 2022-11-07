@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-completions
+spec:
+  completions: 3
+  template:
+    spec:
+      containers:
+      - name: job-completions
+        image: busybox
+        command: ["sh", "-c", "echo Hello, World && exit 0"]
+      restartPolicy: Never

@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-example
+spec:
+  schedule: "*/1 * * * *"     # Job의 실행 주기 (1분에 한 번씩 실행하도록 설정)
+  jobTemplate:                # 실행될 Job의 설정 내용(spec): 잡의 spec과 동일하게 입력 (설정된 주기마다 jobTemplate의 설정값을 갖는 잡을 실행한다)
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: cronjob-example
+            image: busybox
+            args: ["sh", "-c", "date"]
