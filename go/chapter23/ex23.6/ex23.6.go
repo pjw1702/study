@@ -6,6 +6,7 @@ import (
 
 func f() {
 	fmt.Println("f() 함수 시작")
+	// 복구는 웬만하면 안쓰는게 좋다
 	defer func() {
 		// 패닉이 있을 시에
 		if r := recover(); r != nil {
@@ -76,3 +77,4 @@ main.f()
 main.main()
         C:/Users/박정우/Documents/workspace/github/study/go/chapter23/ex23.6/ex23.6.go:34 +0x19
 */
+
