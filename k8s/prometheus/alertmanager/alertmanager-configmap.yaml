@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: alertmanager
+  namespace: monitoring
+data:
+  config.yml: |-
+    global:
+      resolve_timeout: 5m
+      slack_api_url: "https://hooks.slack.com/services/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"
+    route:
+      group_by: ['alertname']
+      receiver: slack
+      group_wait: 10s
+      group_interval: 1m
+      repeat_interval: 4h
+
+    receivers:
+      - name: slack
+        slack_configs:
+        - channel: "general"
+          username: "Prometheus"
+          send_resolved: true
+          title: ""
+          text: ""
