@@ -1,0 +1,9 @@
+<html>
+<head>
+<title>{{ partial "title" }}</title> <!-- partial 구문을 입력한 템플릿을 사용하면 헤더, 푸터(footer), CSS 등 각 태그마다를 부분적으로 템플릿화 할 수 있다 -->
+</head>
+<body>
+Hello World
+{{ yield }} <!--body.html 삽입(hello.html이 레이아웃이 됨)-->
+</body>
+</html>
