@@ -1,3 +1,7 @@
 **/.vscode
 **/*.exe
 **/*.env
+
+./redis/go-redis/data/grafana/
+./redis/go-redis/data/redis/
+./redis/go-redis/data/mariadb/
