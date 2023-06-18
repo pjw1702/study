@@ -43,10 +43,7 @@ services:
   mariadb:
     image: mariadb
     container_name: mariadb
-    environment:
-      - MARIADB_ROOT_PASSWORD=gbqj1Wkd!
-      - MARIADB_DATABASE=infinitas
-      #- MARIADB_ROOT_HOST=%
+    env_file: .env
     ports:
       - 3306:3306
     volumes:
