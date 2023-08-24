@@ -5,7 +5,7 @@
 #include <netdb.h>
 void error_handling(char *message);
 
-int main(void) {
+int main(int argc, char *argv[]) {
     int i;
     struct hostent *host;
     if(argc != 2) {
