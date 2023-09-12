@@ -1,0 +1,11 @@
+go 1.21.0
+
+use (
+	"./chapter03_Counting Sort/q1"
+	"./chapter03_Counting Sort/q2"
+	"./chapter03_Counting Sort/q3"
+	./chapter02_Array_vs_Linked_List/Array
+	./chapter02_Array_vs_Linked_List/List
+	./chapter02_Array_vs_Linked_List/List_2
+	./chapter04_single-linked-list
+)
