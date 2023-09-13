@@ -114,7 +114,7 @@ func (list *LinkedList[T]) InsertAfter(node *Node[T], value T) {
 // 데이터 노드 추가시, 직전 노드가 리스트에 있는 노드인지 없는 노드인지를 판별
 func (list *LinkedList[T]) isIncluded(node *Node[T]) bool {
 	inner := list.root
-	for ; inner != nil; inner = node.next {
+	for ; inner != nil; inner = inner.next {
 		if inner == node {
 			return true
 		}
@@ -148,11 +148,15 @@ func (list *LinkedList[T]) findPrevNode(node *Node[T]) *Node[T] {
 	return nil
 }
 
+// 맨 첫번째 노드부터 제거
+// 1, 2, 3이 삽입되었을 시 PopFront()메소드를 한 번 호출하면 2, 3이 남는다
 func (list *LinkedList[T]) PopFront() {
 	if list.root == nil {
 		return
 	}
 	// free()기능이 없으므로 next에 들어갈 주소 값을 nil로 입력
+	// list.root = list.root.next
+	// list.root.next = nil
 	list.root.next, list.root = nil, list.root.next
 	// 노드가 완전히 제거되었을 경우 root와 tail 모두 nil을 가리켜야 한다
 	if list.root == nil {
@@ -172,6 +176,8 @@ func (list *LinkedList[T]) Remove(node *Node[T]) {
 	if prev == nil {
 		return
 	}
+	// prev.next = node.next
+	// node.next = nil
 	prev.next, node.next = node.next, nil
 
 	// 맨 마지막에 있는 노드를 삭제할 때, tail을 현재 노드의 직전 노드의 위치를 가리키도록 갱신해 주어야 한다
