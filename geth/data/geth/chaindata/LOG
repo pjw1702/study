@@ -1,0 +1,23 @@
+=============== Jul 20, 2023 (KST) ===============
+14:54:32.912950 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:54:32.913987 manifest error: leveldb: manifest corrupted (field 'comparer'): short read [file=MANIFEST-000133] (skipped)
+14:54:32.913987 manifest error: leveldb: manifest corrupted (field 'comparer'): short read [file=MANIFEST-000133] (skipped)
+14:54:32.913987 manifest error: leveldb: manifest corrupted (field 'comparer'): short read [file=MANIFEST-000133] (skipped)
+=============== Jul 20, 2023 (KST) ===============
+14:54:32.917039 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:54:32.917771 table@recovery F·1
+14:54:32.917771 table@recovery recovering @135
+14:54:32.918790 table@recovery unrecoverable @135 Ck·0 Cb·0 S·2085
+14:54:32.918790 table@recovery recovered F·1 N·0 Gk·0 Ck·0 Q·0
+14:54:32.928742 version@stat F·[] S·0B[] Sc·[]
+14:54:32.929481 db@open opening
+14:54:32.929982 journal@recovery F·1
+14:54:32.929982 journal@recovery recovering @132
+14:54:32.930998 journal@drop journal-132 S·531B "invalid chunk type 0x5"
+14:54:32.930998 version@stat F·[] S·0B[] Sc·[]
+14:54:32.933251 db@janitor F·5 G·3
+14:54:32.933251 db@janitor removing table-135
+14:54:32.934250 remove 000135.ldb: remove C:\Users\박정우\Documents\workspace\github\study\geth\data\geth\chaindata\000135.ldb: The system cannot find the file specified. (old name)
+14:54:32.934250 db@janitor removing manifest-129
+14:54:32.935266 db@janitor removing manifest-133
+14:54:32.935266 db@open done T·5.7854ms

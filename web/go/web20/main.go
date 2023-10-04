@@ -19,7 +19,7 @@ func main() {
 	err := http.ListenAndServe(":3000", n)
 	if err != nil {
 		// panic(err)
-		fmt.Errorf("Failed to start this app: %w", err)
+		fmt.Println("Failed to start this app: %w", err)
 		return
 	}
 }
