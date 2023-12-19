@@ -1,0 +1,44 @@
+#================#
+# Ansible Server #
+#================#
+
+# Vagrantfile의 시작
+# Vagrant 2.0 구성을 사용한다는 것을 명시
+Vagrant.configure("2") do |config|
+  # VM을 정의하고 그 이름을 "ansible-server"로 지정
+  # 해당 VM의 구성을 설정
+  config.vm.define "ansible-server" do |cfg|
+    # 사용할 Vagrant box를 지정
+    # "centos/7" Box를 사용하여 CentOS 7 기반의 VM 생성
+    cfg.vm.box = "centos/7"
+  # VM의 제공자(provider)를 설정
+  #  VirtualBox를 사용
+  cfg.vm.provider "virtualbox" do |vb|
+    # 생성된 VM의 이름을 지정
+    # "github_SysNet4Admin"는 VM 이름에 추가된 메타데이터이자 식별자이며, 큰 의미는 없다
+    vb.name = "Ansible-Server(github_SysNet4Admin)"
+  end
+  # 가상 머신 내부에서의 호스트 이름을 설정
+  cfg.vm.host_name = "ansible-server"
+  # 공용 네트워크를 설정
+  # 가상 머신에 고정 IP 주소 "192.168.1.10"을 할당
+  cfg.vm.network "public_network", ip: "192.168.1.10"
+  # 호스트와 가상 머신 간에 SSH 포트 포워딩을 설정
+  # 호스트의 60010 포트를 가상 머신의 22 포트로 포워딩
+  # "ssh"라는 식별자를 사용
+  cfg.vm.network "forwarded_port", guest: 22, host: 60010, auto_correct: true, id: "ssh"
+  # 호스트와 가상 머신 간에 디렉터리를 동기화하는 폴더를 설정
+  # "../data" 디렉터리를 가상 머신 내의 "/vagrant" 경로로 동기화 설정
+  # disabled: true 설정으로 비활성화
+  cfg.vm.synced_folder "../data", "/vagrant", disabled: true
+  # VM 프로지저닝
+  # 쉘 스크립트를 수단으로 사용하여 명령을 수행하여 프로비저닝
+  cfg.vm.provision "shell", inline: "yum install ansible -y"
+  cfg.vm.provision "file", source: "../Ansible/playbooks/ansible_env_ready.yml", 
+    # /vagrant 경로에 복사 됨
+    # Vagrant에서는 특별한 경로를 명시하지 않으면 기본적으로 로컬 머신의 Vagrantfile이 있는 디렉토리를 가상 머신 내의 /vagrant 경로와 공유 함
+	  destination: "ansible_env_ready.yml"
+  # 마찬가지로 특정 경로를 명시하지 않았으므로 /vagrant 경로 하위의 ansible_env_ready.yml 파일을 근거로 앤서블이 수행 됨
+	cfg.vm.provision "shell", inline: "ansible-playbook ansible_env_ready.yml"
+  end
+end
